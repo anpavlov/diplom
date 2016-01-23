@@ -1,3 +1,9 @@
-diplomvenv/
+.diplomenv/
 logs/
+.idea/
+example/
 *.pyc
+nginx_prefix/
+*.pid
+*.sock
+server_files/modules/

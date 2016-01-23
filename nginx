@@ -1,0 +1,22 @@
+#!/bin/bash
+ngst='sudo /opt/openresty/nginx/sbin/nginx -p ./nginx_prefix -c ../conf/nginx.conf'
+strt=$ngst
+
+case "$1" in
+"start" | "")
+echo "=== Starting nginx..."
+strt="$ngst"
+;;
+
+"stop")
+echo "=== Stopping nginx..."
+strt="$ngst -s stop"
+;;
+
+"reload")
+echo "=== Reloading nginx..."
+strt="$ngst -s reload"
+;;
+esac
+
+eval $strt

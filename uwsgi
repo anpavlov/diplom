@@ -1,0 +1,50 @@
+#!/bin/bash
+act="source .diplomenv/bin/activate"
+deact="deactivate"
+
+case "$1" in
+"start" | "")
+echo "=== Starting uWSGI..."
+
+if [ -f "server_files/uwsgi.pid" ]
+then
+    echo "=== uWSGI's already running"
+else
+    eval $act
+    cd server_files/
+    eval "uwsgi --ini ../conf/uwsgi.ini"
+    eval $deact
+fi
+;;
+
+"stop")
+echo "=== Stopping uWSGI..."
+if [ ! -f "server_files/uwsgi.pid" ]
+then
+    echo "=== uWSGI's not running"
+else
+    eval $act
+    cd server_files/
+    eval "uwsgi --stop ./uwsgi.pid"
+    eval $deact
+    rm uwsgi.pid
+    rm uwsgi.sock
+fi
+;;
+
+"reload")
+echo "=== Reloading uWSGI..."
+if [ ! -f "server_files/uwsgi.pid" ]
+then
+    echo "=== uWSGIs's not running"
+else
+    eval $act
+    cd server_files/
+    eval "uwsgi --reload ./uwsgi.pid"
+    eval $deact
+fi
+;;
+
+*)
+echo "=== Unknown command. Use:\n\tstart\n\treload\n\tstop"
+esac
