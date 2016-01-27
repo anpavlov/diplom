@@ -1,0 +1,26 @@
+.part {
+    width: 500px;
+    padding: 0px 10px 10px 10px;
+}
+.new_modules {
+    background-color: #eee;
+}
+.upload {
+    background-color: lightgreen;
+}
+.module {
+    padding: 5px;
+}
+.module:nth-child(odd) {
+    background-color: #ffffff;
+}
+.module:nth-child(even) {
+     background-color: #d1d1d1;
+}
+#target {
+    background-color: red;
+}
+
+.module:hover #target {
+    background-color: green;
+}

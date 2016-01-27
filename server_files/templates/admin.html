@@ -2,47 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin page</title>
-    <style>
-        .part {
-            width: 500px;
-            padding: 0px 10px 10px 10px;
-        }
-        .new_modules {
-            background-color: #eee;
-        }
-        .upload {
-            background-color: lightgreen;
-        }
-        .module {
-            padding: 5px;
-        }
-        .module:nth-child(odd) {
-            background-color: #ffffff;
-        }
-        .module:nth-child(even) {
-             background-color: #d1d1d1;
-        }
-    </style>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/main.css">
+    <script src="/jquery-2.2.0.min.js"></script>
+{#    <script src="/admin.js"></script>#}
+    {% block head %}{% endblock %}
 </head>
 <body>
 <h1>Hello, admin</h1>
-
-<div class="part new_modules">
-    <h2>New modules:</h2>
-    <div class="module"><i>Нет новых модулей</i></div>
-    <div class="module">модуль 1</div>
-    <div class="module">модуль 2</div>
-    <div class="module">модуль 3</div>
-    <div class="module">модуль 4</div>
-</div>
-
-<div class="part upload">
-    <h2>Upload module in zip</h2>
-    <form action="/upload_module" method="post" enctype="multipart/form-data">
-        <input type="file" name="archive">
-        <p><input type="submit"></p>
-    </form>
-</div>
+{% block content %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,39 @@
+{% extends "admin.html" %}
+{% block title %}Modules{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<div class="part new_modules">
+    <a href="{{ url_for('admin.modules') }}">modules</a>
+    <a href="#">Привет</a>
+    <h2>New modules:</h2>
+    {% if not new_modules %}
+        <div class="module"><i>Нет новых модулей</i></div>
+    {% else %}
+        {% for new_module in new_modules %}
+            <div class="module">{{ new_module.name }}-{{ new_module.version }}
+                <form method="post">
+                    <button name="id" value="{{ new_module.id }}" formaction="/admin/module" formmethod="get">View</button>
+                    <button name="id" value="{{ new_module.id }}" formaction="/admin/approve_module">Approve</button>
+                    <button name="id" value="{{ new_module.id }}" formaction="/admin/delete_module">Delete</button>
+                </form>
+                <a href="#" id="target">Привет</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<div class="part upload">
+    <h2>Upload module in zip</h2>
+    <form action="/admin/upload_module" method="post" enctype="multipart/form-data">
+        <input type="file" name="archive">
+        <p><input type="submit"></p>
+    </form>
+</div>
+{% endblock %}

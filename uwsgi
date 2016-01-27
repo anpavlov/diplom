@@ -13,7 +13,7 @@ else
     eval $act
     cd server_files/
     eval "uwsgi --ini ../conf/uwsgi.ini"
-    eval $deact
+    eval ${deact}
 fi
 ;;
 
@@ -26,7 +26,7 @@ else
     eval $act
     cd server_files/
     eval "uwsgi --stop ./uwsgi.pid"
-    eval $deact
+    eval ${deact}
     rm uwsgi.pid
     rm uwsgi.sock
 fi
@@ -38,10 +38,10 @@ if [ ! -f "server_files/uwsgi.pid" ]
 then
     echo "=== uWSGIs's not running"
 else
-    eval $act
+    eval ${act}
     cd server_files/
     eval "uwsgi --reload ./uwsgi.pid"
-    eval $deact
+    eval ${deact}
 fi
 ;;
 
