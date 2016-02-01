@@ -3,7 +3,8 @@
 {% block head %}
 {% endblock %}
 {% block content %}
-<div class="part new_modules">
+
+{#<div class="part new_modules">
     <a href="{{ url_for('admin.modules') }}">modules</a>
     <a href="#">Привет</a>
     <h2>New modules:</h2>
@@ -27,13 +28,13 @@
             <td></td>
         </tr>
     </table>
-</div>
+</div>#}
 
-<div class="part upload">
+{#<div class="part upload">
     <h2>Upload module in zip</h2>
     <form action="/admin/upload_module" method="post" enctype="multipart/form-data">
         <input type="file" name="archive">
         <p><input type="submit"></p>
     </form>
-</div>
+</div>#}
 {% endblock %}

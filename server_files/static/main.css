@@ -1,3 +1,57 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: lightgreen;
+    min-height: 500px;
+}
+
+.header {
+    background-color: lightcoral;
+    height: 80px;
+}
+
+.header__cloud-img {
+    height: 40px;
+    margin: 20px;
+}
+
+.header__btn {
+    display: inline-block;
+    line-height: 60px;
+    margin: 10px 10px;
+    padding: 0 10px;
+}
+
+.header__elem_left {
+    float: left;
+}
+
+.header__elem_right {
+    float: right;
+    /*margin-right: 30px;*/
+}
+
+.content {
+    padding: 20px;
+}
+
+h1 {
+    margin: 0 0 20px 0;
+    font-weight: normal;
+}
+
+
+
+
+
+
+
 .part {
     width: 500px;
     padding: 0px 10px 10px 10px;

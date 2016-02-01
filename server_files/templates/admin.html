@@ -4,12 +4,49 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/modules.css">
     <script src="/jquery-2.2.0.min.js"></script>
 {#    <script src="/admin.js"></script>#}
     {% block head %}{% endblock %}
 </head>
 <body>
-<h1>Hello, admin</h1>
+
+<div class="container">
+    <div class="header">
+        <img class="header__cloud-img header__elem_left" src="/cloud.png" alt="cloud"/>
+        <a class="header__btn header__elem_left" href="#">Modules (3)</a>
+        <a class="header__btn header__elem_left" href="#">Users</a>
+        <a class="header__btn header__elem_right" href="#">Logout</a>
+    </div>
+    <div class="content">
+        <h1>Modules</h1>
+        <table class="modules-table">
+            <thead>
+                <tr>
+                    <th class="modules_table__header-field modules_table__header-field_approved">&nbsp;</th>
+                    <th class="modules_table__header-field modules-table__header-field_name">Name</th>
+                    <th class="modules_table__header-field modules-table__header-field_version">Version</th>
+                    <th class="modules_table__header-field modules-table__header-field_info">Info</th>
+                    <th class="modules_table__header-field modules-table__header-field_delete">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="modules-table__content-row">
+                    <td class="modules-table__field modules-table__field_approved">
+                        <span title="Approved" class="modules-table__field_approved_mark approved">o</span>
+                    </td>
+                    <td class="modules-table__field modules-table__field_name">super</td>
+                    <td class="modules-table__field modules-table__field_version">1.0</td>
+                    <td class="modules-table__field modules-table__field_info">Info</td>
+                    <td class="modules-table__field modules-table__field_delete">Delete</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 {% block content %}{% endblock %}
+
 </body>
 </html>

@@ -7,3 +7,4 @@ nginx_prefix/
 *.pid
 *.sock
 server_files/modules/
+digitalocean
