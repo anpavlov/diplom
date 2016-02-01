@@ -17,8 +17,11 @@
     width: 40%;
 }
 
+.modules-table__header-field_info {
+    width: 5%;
+}
+
 .modules-table__header-field_version,
-.modules-table__header-field_info,
 .modules-table__header-field_delete {
     width: 10%;
 }
@@ -33,19 +36,50 @@
     padding-left: 0;
 }
 
-.modules-table__field_approved {
+.modules-table__field_center-text {
     text-align: center;
 }
 
-.modules-table__field_approved_mark {
-    font-size: 0;
-    /*line-height: 100%;*/
-    background-color: red;
-    /*padding: 5px;*/
-    /*margin: auto 0;*/
-    height: 10px;
-    width: 10px;
+.modules-table__field_no-pad {
+    padding: 0 15px 0 0;
+}
+
+.modules-table__field_btn {
+    font-size: smaller;
+    color: black;
+    text-decoration: none;
+    padding: 3px 5px;
+    border: 1px solid black;
+    border-radius: 15%;
+    height: 15px;
+    width: 30px;
     display: inline-block;
-    border-radius: 100%;
     vertical-align: middle;
+    cursor: pointer;
+}
+
+.modules-table__field_btn.wide {
+    width: 50px;
+}
+
+.modules-table__field_btn.new:before {
+    content: "new!";
+}
+
+.modules-table__field_btn.new:hover:before {
+    font-family: 'Material Icons';
+    font-size: initial;
+    content: "done";
+    text-rendering: optimizeLegibility;
+}
+
+.modules-table__field_btn.approve:before {
+    font-family: 'Material Icons';
+    font-size: initial;
+    content: "done";
+    text-rendering: optimizeLegibility;
+}
+
+.modules-table__field_btn.approved {
+    background-color: #1655ff;
 }
