@@ -1,5 +1,5 @@
 # coding=utf-8
-from ext import mysql
+from ext import mysql, logged_as_admin
 from flask import request, Blueprint, render_template, redirect, url_for
 from zipfile import ZipFile
 import json
@@ -16,6 +16,9 @@ def admin_page():
 
 @admin.route("/modules")
 def modules():
+    user_id = logged_as_admin(request, mysql)
+    if user_id is None:
+        return redirect('/login')
     # context = {'new_modules': []}
     #
     # connection = mysql.connect()
@@ -30,3 +33,8 @@ def modules():
 @admin.route("/users")
 def users():
     return render_template("admin.html")
+
+
+@admin.route("/login")
+def login():
+    return render_template("login.html")

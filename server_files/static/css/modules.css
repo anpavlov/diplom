@@ -32,8 +32,7 @@
 
 .modules-table__field {
     text-align: left;
-    padding: 15px;
-    padding-left: 0;
+    padding: 15px 15px 15px 0;
 }
 
 .modules-table__field_center-text {
