@@ -10,7 +10,7 @@
 }
 
 .modules_table__header-field_approved {
-    width: 3%;
+    width: 6%;
 }
 
 .modules-table__header-field_name {
@@ -27,7 +27,7 @@
 }
 
 .modules-table__content-row {
-    border-top: 1px solid black;
+    border-top: 1px solid #D1D1D1;
 }
 
 .modules-table__field {
@@ -45,24 +45,34 @@
 
 .modules-table__field_btn {
     font-size: smaller;
-    color: black;
+    font-weight: bold;
+    color: white;
     text-decoration: none;
     padding: 3px 5px;
-    border: 1px solid black;
-    border-radius: 15%;
+    //border: 1px solid black;
+    border-radius: 10px;
     height: 15px;
     width: 30px;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
+    background-color: #1abc9c;
 }
 
 .modules-table__field_btn.wide {
     width: 50px;
 }
 
+.modules-table__field_btn.new {
+    background-color: #2ecc71;
+}
+
+.modules-table__field_btn.new:hover {
+    background-color: #64DD17;
+}
+
 .modules-table__field_btn.new:before {
-    content: "new!";
+    content: "new";
 }
 
 .modules-table__field_btn.new:hover:before {
@@ -81,4 +91,23 @@
 
 .modules-table__field_btn.approved {
     background-color: #1655ff;
+}
+
+.modules-table__field_no-new {
+    font-style: italic;
+    color: #acacac;
+}
+
+.modules-table__field_btn_info {
+    background-color: #2799FF;
+}
+.modules-table__field_btn_info:hover {
+    background-color: #2180d7;
+}
+
+.modules-table__field_btn_delete {
+    background-color: #ED4F32;
+}
+.modules-table__field_btn_delete:hover {
+    background-color: #DA4429;
 }

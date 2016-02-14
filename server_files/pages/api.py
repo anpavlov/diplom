@@ -1,5 +1,5 @@
 # coding=utf-8
-from ext import mysql
+from utils import mysql
 from flask import request, Blueprint, jsonify
 from zipfile import ZipFile
 import json

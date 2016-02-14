@@ -8,3 +8,5 @@ nginx_prefix/
 *.sock
 server_files/modules/
 digitalocean
+bigfile.txt
+newfile.txt

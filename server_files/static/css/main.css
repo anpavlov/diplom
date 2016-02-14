@@ -7,12 +7,12 @@ body {
 .container {
     width: 1000px;
     margin: 0 auto;
-    background-color: lightgreen;
+    /*background-color: lightgreen;*/
     min-height: 500px;
 }
 
 .header {
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
     height: 80px;
 }
 

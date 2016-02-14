@@ -1,10 +1,11 @@
 # coding=utf-8
 import os
 import ConfigParser
+import settings
 
 # from werkzeug.utils import secure_filename
 
-from ext import mysql
+from utils import mysql
 
 from flask import Flask
 # from flask import render_template
@@ -14,15 +15,8 @@ from pages.api import api
 
 app = Flask(__name__)
 
-config = ConfigParser.ConfigParser()
-config.read('../conf/server.ini')
-database_config_section = 'database'
-
 app.config['DEBUG'] = True
-app.config['MYSQL_DATABASE_USER'] = config.get(database_config_section, 'user')
-app.config['MYSQL_DATABASE_PASSWORD'] = config.get(database_config_section, 'password')
-app.config['MYSQL_DATABASE_DB'] = config.get(database_config_section, 'db')
-app.config['MYSQL_DATABASE_HOST'] = config.get(database_config_section, 'host')
+app.config.from_object(settings)
 
 mysql.init_app(app)
 

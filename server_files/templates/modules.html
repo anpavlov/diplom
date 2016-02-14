@@ -2,6 +2,7 @@
 {% block title %}Modules{% endblock %}
 {% block head %}
     <link rel="stylesheet" href="/css/modules.css">
+    <link rel="stylesheet" href="/css/loader.css">
     <script src="/js/modules.js"></script>
 {% endblock %}
 {% block content %}
@@ -18,20 +19,34 @@
         </tr>
     </thead>
     <tbody>
+    {% if modules_count %}
+    {% for module in all_modules %}
         <tr class="modules-table__content-row">
             <td class="modules-table__field modules-table__field_no-pad modules-table__field_center-text">
-                <span data-type="approve" data-module-id="4" title="Approved" class="modules-table__field_btn new"></span>
+                <span data-type="approve" data-module-id="{{ module.id }}" title="Approved"
+                      class="modules-table__field_btn {% if module.approved %}approved{% else %}new{% endif %}"></span>
             </td>
-            <td class="modules-table__field">super</td>
-            <td class="modules-table__field">1.0</td>
+            <td class="modules-table__field">{{ module.name }}</td>
+            <td class="modules-table__field">{{ module.version }}</td>
             <td class="modules-table__field modules-table__field_no-pad">
-                <a href="/admin/module?id=4" data-type="info" data-module-id="4" class="modules-table__field_btn modules-table__field_center-text">info</a>
+                <a href="/admin/module?id={{ module.id }}" data-type="info" data-module-id="{{ module.id }}"
+                   class="modules-table__field_btn modules-table__field_btn_info modules-table__field_center-text">info</a>
             </td>
             <td class="modules-table__field modules-table__field_no-pad">
-                <a href="/dee" data-type="delete" data-module-id="4" class="modules-table__field_btn modules-table__field_center-text wide">delete</a>
+                <a href="/del" data-type="delete" data-module-id="{{ module.id }}"
+                   class="modules-table__field_btn modules-table__field_btn_delete modules-table__field_center-text wide">delete</a>
             </td>
         </tr>
+    {% endfor %}
+    {% else %}
+        <tr class="modules-table__content-row">
+            <td class="modules-table__field">&nbsp;</td>
+            <td class="modules-table__field modules-table__field_no-new">No modules</td>
+            <td class="modules-table__field">&nbsp;</td>
+            <td class="modules-table__field">&nbsp;</td>
+            <td class="modules-table__field">&nbsp;</td>
+        </tr>
+    {% endif %}
     </tbody>
 </table>
-
 {% endblock %}
