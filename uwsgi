@@ -28,7 +28,7 @@ else
     eval "uwsgi --stop ./uwsgi.pid"
     eval ${deact}
     rm uwsgi.pid
-    rm uwsgi.sock
+    #rm uwsgi.sock
 fi
 ;;
 

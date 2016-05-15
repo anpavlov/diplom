@@ -11,30 +11,44 @@
 <table class="modules-table">
     <thead>
         <tr>
-            <th class="modules_table__header-field modules_table__header-field_approved">&nbsp;</th>
+            <th class="modules_table__header-field ">&nbsp;</th>
             <th class="modules_table__header-field modules-table__header-field_name">Name</th>
-            <th class="modules_table__header-field modules-table__header-field_version">Version</th>
-            <th class="modules_table__header-field modules-table__header-field_info">Info</th>
-            <th class="modules_table__header-field modules-table__header-field_delete">Delete</th>
+            <th class="modules_table__header-field ">Version</th>
+            <th class="modules_table__header-field ">Action</th>
+            <th class="modules_table__header-field ">Info</th>
+            <th class="modules_table__header-field ">Delete</th>
         </tr>
     </thead>
     <tbody>
     {% if modules_count %}
     {% for module in all_modules %}
         <tr class="modules-table__content-row">
-            <td class="modules-table__field modules-table__field_no-pad modules-table__field_center-text">
-                <span data-type="approve" data-module-id="{{ module.id }}" title="Approved"
-                      class="modules-table__field_btn {% if module.approved %}approved{% else %}new{% endif %}"></span>
+            <td class="modules-table__field">
+                <div class="dot {% if module.approved and module.activated %}dot-green{% else %}dot-red{% endif %}"></div>
             </td>
             <td class="modules-table__field">{{ module.name }}</td>
             <td class="modules-table__field">{{ module.version }}</td>
             <td class="modules-table__field modules-table__field_no-pad">
-                <a href="/admin/module?id={{ module.id }}" data-type="info" data-module-id="{{ module.id }}"
-                   class="modules-table__field_btn modules-table__field_btn_info modules-table__field_center-text">info</a>
+            {% if not module.approved %}
+                <a href="/admin/approve" data-type="approve" data-module-id="{{ module.id }}"
+                       class="modules-table__field_btn modules-table__field_btn_approve modules-table__field_center-text wide">APPROVE</a>
+            {% else %}
+                {% if not module.activated %}
+                    <a href="/admin/enable" data-type="enable" data-module-id="{{ module.id }}"
+                       class="modules-table__field_btn modules-table__field_btn_enable modules-table__field_center-text wide">ENABLE</a>
+                {% else %}
+                    <a href="/admin/disable" data-type="disable" data-module-id="{{ module.id }}"
+                       class="modules-table__field_btn modules-table__field_btn_disable modules-table__field_center-text wide">DISABLE</a>
+                {% endif %}
+            {% endif %}
             </td>
             <td class="modules-table__field modules-table__field_no-pad">
-                <a href="/del" data-type="delete" data-module-id="{{ module.id }}"
-                   class="modules-table__field_btn modules-table__field_btn_delete modules-table__field_center-text wide">delete</a>
+                <a href="/admin/{{ module.name }}/settings" data-type="settings" data-module-id="{{ module.id }}"
+                   class="modules-table__field_btn modules-table__field_btn_info modules-table__field_center-text wide">SETTINGS</a>
+            </td>
+            <td class="modules-table__field modules-table__field_no-pad">
+                <a href="/admin/delete" data-type="delete" data-module-id="{{ module.id }}"
+                   class="modules-table__field_btn modules-table__field_btn_delete modules-table__field_center-text wide">DELETE</a>
             </td>
         </tr>
     {% endfor %}
@@ -45,8 +59,14 @@
             <td class="modules-table__field">&nbsp;</td>
             <td class="modules-table__field">&nbsp;</td>
             <td class="modules-table__field">&nbsp;</td>
+            <td class="modules-table__field">&nbsp;</td>
         </tr>
     {% endif %}
     </tbody>
 </table>
+
+<form class="upload-form" method="post" action="/admin/upload">
+    <input name="archive" type="file"/><br>
+    <button type="submit">Загрузить модуль</button>
+</form>
 {% endblock %}

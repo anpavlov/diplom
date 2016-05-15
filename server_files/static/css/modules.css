@@ -60,7 +60,7 @@
 }
 
 .modules-table__field_btn.wide {
-    width: 50px;
+    width: 70px;
 }
 
 .modules-table__field_btn.new {
@@ -98,6 +98,13 @@
     color: #acacac;
 }
 
+.modules-table__field_btn_approve {
+    background-color: #2799FF;
+}
+.modules-table__field_btn_approve:hover {
+    background-color: #2180d7;
+}
+
 .modules-table__field_btn_info {
     background-color: #2799FF;
 }
@@ -105,9 +112,42 @@
     background-color: #2180d7;
 }
 
+.modules-table__field_btn_enable {
+    background-color: #5eed50;
+}
+.modules-table__field_btn_enable:hover {
+    background-color: #23da16;
+}
+
+.modules-table__field_btn_disable {
+    background-color: #edad48;
+}
+.modules-table__field_btn_disable:hover {
+    background-color: #da7a00;
+}
+
 .modules-table__field_btn_delete {
     background-color: #ED4F32;
 }
 .modules-table__field_btn_delete:hover {
     background-color: #DA4429;
+}
+
+.upload-form {
+    margin-top: 20px;
+}
+
+.dot {
+    border: 4px solid green;
+    border-radius: 50%;
+    height: 0;
+    width: 0;
+}
+
+.dot-green {
+    border-color: #00b300;
+}
+
+.dot-red {
+    border-color: #ff3a3a;
 }
