@@ -1,7 +1,7 @@
 .diplomenv/
 logs/
 .idea/
-example/
+#example/
 *.pyc
 nginx_prefix/
 *.pid
