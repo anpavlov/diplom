@@ -1,0 +1,31 @@
+{% extends "admin.html" %}
+{% block title %}Настройки {{ module.name }}{% endblock %}
+{% block head %}
+<style>
+h4 {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+</style>
+<script src="/js/settings.js"></script>
+{% endblock %}
+{% block content %}
+
+<h1>Настройки {{ module.name }}</h1>
+<form class="settings-form" method="post" action="/admin/{{ module.name }}/settings/update">
+    {% for setting in settings %}
+        <h4>{{ setting.name }}</h4>
+        {% if setting.type == "int" %}
+            <input name="{{ setting.name }}" type="number" value="{{ setting.value }}"/>
+        {% elif setting.type == "string" %}
+            <input name="{{ setting.name }}" type="text" value="{{ setting.value }}"/>
+        {% elif setting.type == "boolean" %}
+            <br/><input name="{{ setting.name }}" type="radio" value="true" {% if setting.value == 'true' %}checked{% endif %}/> Да<br/>
+            <input name="{{ setting.name }}" type="radio" value="false" {% if setting.value == 'false' %}checked{% endif %}/> Нет
+        {% endif %}
+        <br/>
+    {% endfor %}
+<br/>
+<input type="submit" value="Сохранить"/>
+</form>
+{% endblock %}

@@ -5,7 +5,7 @@
         <xs:attribute name="type" use="required">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:pattern value="(VARCHAR\(\d+\))|(INT)|(TEXT)|(BLOB)"/>
+                    <xs:pattern value="(VARCHAR\(\d+\))|(INT)|(TEXT)|(BLOB)|(REAL)|(DATE)|(TIMESTAMP)|(DATETIME)|(BOOLEAN)"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>

@@ -1,5 +1,5 @@
 {% extends "admin.html" %}
-{% block title %}Modules{% endblock %}
+{% block title %}АЦС ХОВДРО{% endblock %}
 {% block head %}
     <link rel="stylesheet" href="/css/modules.css">
     <link rel="stylesheet" href="/css/loader.css">
@@ -7,16 +7,17 @@
 {% endblock %}
 {% block content %}
 
-<h1>Modules</h1>
+<h1>Список компонентов</h1>
 <table class="modules-table">
     <thead>
         <tr>
             <th class="modules_table__header-field ">&nbsp;</th>
-            <th class="modules_table__header-field modules-table__header-field_name">Name</th>
-            <th class="modules_table__header-field ">Version</th>
-            <th class="modules_table__header-field ">Action</th>
-            <th class="modules_table__header-field ">Info</th>
-            <th class="modules_table__header-field ">Delete</th>
+            <th class="modules_table__header-field modules-table__header-field_name">Название</th>
+            <th class="modules_table__header-field ">Версия</th>
+            <th class="modules_table__header-field ">Информация</th>
+            <th class="modules_table__header-field ">Действие</th>
+            <th class="modules_table__header-field ">Настройки</th>
+            <th class="modules_table__header-field ">Удалить</th>
         </tr>
     </thead>
     <tbody>
@@ -26,36 +27,51 @@
             <td class="modules-table__field">
                 <div class="dot {% if module.approved and module.activated %}dot-green{% else %}dot-red{% endif %}"></div>
             </td>
-            <td class="modules-table__field">{{ module.name }}</td>
+            <td class="modules-table__field">
+                {% if module.has_page and module.approved and module.activated %}
+                    <a href="/module/{{ module.name }}">{{ module.name }}</a>
+                {% else %}
+                    {{ module.name }}
+                {% endif %}
+            </td>
             <td class="modules-table__field">{{ module.version }}</td>
+            <td class="modules-table__field modules-table__field_no-pad">
+                <a href="/admin/{{ module.name }}/info" data-type="info" data-module-id="{{ module.id }}"
+                   class="modules-table__field_btn modules-table__field_btn_info modules-table__field_center-text wide">ИНФОРМАЦИЯ</a>
+            </td>
             <td class="modules-table__field modules-table__field_no-pad">
             {% if not module.approved %}
                 <a href="/admin/approve" data-type="approve" data-module-id="{{ module.id }}"
-                       class="modules-table__field_btn modules-table__field_btn_approve modules-table__field_center-text wide">APPROVE</a>
+                       class="modules-table__field_btn modules-table__field_btn_approve modules-table__field_center-text wide">ПОДТВЕРДИТЬ</a>
             {% else %}
                 {% if not module.activated %}
                     <a href="/admin/enable" data-type="enable" data-module-id="{{ module.id }}"
-                       class="modules-table__field_btn modules-table__field_btn_enable modules-table__field_center-text wide">ENABLE</a>
+                       class="modules-table__field_btn modules-table__field_btn_enable modules-table__field_center-text wide">ВКЛЮЧИТЬ</a>
                 {% else %}
                     <a href="/admin/disable" data-type="disable" data-module-id="{{ module.id }}"
-                       class="modules-table__field_btn modules-table__field_btn_disable modules-table__field_center-text wide">DISABLE</a>
+                       class="modules-table__field_btn modules-table__field_btn_disable modules-table__field_center-text wide">ВЫКЛЮЧИТЬ</a>
                 {% endif %}
             {% endif %}
             </td>
             <td class="modules-table__field modules-table__field_no-pad">
+                {% if module.has_settings %}
                 <a href="/admin/{{ module.name }}/settings" data-type="settings" data-module-id="{{ module.id }}"
-                   class="modules-table__field_btn modules-table__field_btn_info modules-table__field_center-text wide">SETTINGS</a>
+                   class="modules-table__field_btn modules-table__field_btn_info modules-table__field_center-text wide">НАСТРОЙКИ</a>
+                {% else %}
+                Нет настроек
+                {% endif %}
             </td>
             <td class="modules-table__field modules-table__field_no-pad">
                 <a href="/admin/delete" data-type="delete" data-module-id="{{ module.id }}"
-                   class="modules-table__field_btn modules-table__field_btn_delete modules-table__field_center-text wide">DELETE</a>
+                   class="modules-table__field_btn modules-table__field_btn_delete modules-table__field_center-text wide">УДАЛИТЬ</a>
             </td>
         </tr>
     {% endfor %}
     {% else %}
         <tr class="modules-table__content-row">
             <td class="modules-table__field">&nbsp;</td>
-            <td class="modules-table__field modules-table__field_no-new">No modules</td>
+            <td class="modules-table__field modules-table__field_no-new">Нет компонентов</td>
+            <td class="modules-table__field">&nbsp;</td>
             <td class="modules-table__field">&nbsp;</td>
             <td class="modules-table__field">&nbsp;</td>
             <td class="modules-table__field">&nbsp;</td>
@@ -64,9 +80,9 @@
     {% endif %}
     </tbody>
 </table>
-
+<h4>Загрузить компонент</h4>
 <form class="upload-form" method="post" action="/admin/upload">
-    <input name="archive" type="file"/><br>
-    <button type="submit">Загрузить модуль</button>
+    <input name="archive" type="file"/><br/><br/>
+    <button type="submit">Загрузить компонент</button>
 </form>
 {% endblock %}

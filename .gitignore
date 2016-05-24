@@ -10,3 +10,6 @@ server_files/modules/
 digitalocean
 bigfile.txt
 newfile.txt
+old_ex/
+restored/
+server_files/bck/

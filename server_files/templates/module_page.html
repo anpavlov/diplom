@@ -1,0 +1,18 @@
+{% extends "admin.html" %}
+{% block title %}Компонент {{ module.name }}{% endblock %}
+{% block head %}
+    <script language="javascript" type="text/javascript">
+      function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+      }
+    </script>
+{% endblock %}
+{% block content %}
+
+<h1>Компонент {{ module.name }}</h1>
+
+<iframe src="/html/{{ module.name }}/index.html" width="100%" scrolling="no" onload="resizeIframe(this)">
+Не поддерживается
+</iframe>
+
+{% endblock %}

@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <style>
+        .logdiv {
+            margin: 0 auto;
+            width: 500px;
+            text-align: center;
+        }
+
+        h4 {
+            margin-bottom: 5px;
+        }
+
+        .err {
+            color: #ff4a3d;
+        }
+    </style>
 </head>
 <body>
-<h1>Login</h1>
+<div class="logdiv">
+<h1>АЦС ХОВДРО</h1>
+<h2>Авторизация</h2>
 <form method="post" action="/login">
-    <label>
-        <input name="username" type="text"/>
-    </label>
-    <input name="password" type="password"/>
-    <input type="submit"/>
+    {% if has_error %}<p class="err">{{ error_text }}</p>{% endif %}
+    <h4>Логин</h4>
+    <input name="username" type="text"/>
+    <h4>Пароль</h4>
+    <input name="password" type="password"/><br/><br/>
+    <input type="submit" value="Войти"/>
 </form>
+</div>
 </body>
 </html>

@@ -14,7 +14,7 @@
 }
 
 .modules-table__header-field_name {
-    width: 40%;
+    width: 25%;
 }
 
 .modules-table__header-field_info {
@@ -60,7 +60,7 @@
 }
 
 .modules-table__field_btn.wide {
-    width: 70px;
+    width: 110px;
 }
 
 .modules-table__field_btn.new {

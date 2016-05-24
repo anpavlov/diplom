@@ -1,0 +1,36 @@
+{% extends "admin.html" %}
+{% block title %}Компонент {{ module.name }}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="/css/highlight/default.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+{% block content %}
+
+<h1>Компонент {{ module.name }}</h1>
+
+<h4>manifest.json</h4>
+<pre><code class="json">{{ manifest }}</code></pre>
+{% if db %}
+<h4>database.xml</h4>
+<pre><code class="xml">{{ db }}</code></pre>
+{% endif %}
+
+{% if settings %}
+<h4>settings.xml</h4>
+<pre><code class="xml">{{ settings }}</code></pre>
+{% endif %}
+
+{% for method in methods %}
+<h4>{{ method.name }}.lua</h4>
+<pre><code class="lua">{{ method.text }}</code></pre>
+{% endfor %}
+
+{% if html %}
+{% for f in html %}
+<h4>{{ f.name }}</h4>
+<pre><code>{{ f.data }}</code></pre>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

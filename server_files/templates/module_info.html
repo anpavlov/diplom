@@ -1,0 +1,30 @@
+{% extends "admin.html" %}
+{% block title %}Компонент {{ module.name }}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="/css/module_info.css">
+{% endblock %}
+{% block content %}
+
+<h1>Компонент {{ module.name }}</h1>
+<table border="1px">
+<tr><td><h3>Название:</h3></td><td>{{ module.name }}</td></tr>
+<tr><td><h3>Версия:</h3></td><td>{{ module.version }}</td></tr>
+<tr><td><h3>Зависимости:</h3></td><td>{% if module.dependencies|length == 0 %}Нет{% else %}{% for dep in module.dependencies %}{{ dep }}<br/>{% endfor %}{% endif %}</td></tr>
+<tr><td><h3>Описание:</h3></td><td>{{ module.description }}</td></tr>
+<tr><td><h3>Есть база данных:</h3></td><td>{% if module.has_db %}Да{% else %}Нет{% endif %}</td></tr>
+<tr><td><h3>Есть настройки:</h3></td><td>{% if module.has_settings %}Да{% else %}Нет{% endif %}</td></tr>
+<tr><td><h3>Есть HTML:</h3></td><td>{% if module.has_page %}Да{% else %}Нет{% endif %}</td></tr>
+<tr><td><h3>Подтвержден:</h3></td><td>{% if module.approved %}Да{% else %}Нет{% endif %}</td></tr>
+<tr><td><h3>Включен:</h3></td><td>{% if module.activated %}Да{% else %}Нет{% endif %}</td></tr>
+{% if module.has_db %}
+<tr><td><h3>Таблицы БД:</h3></td><td>{% for table in module.tables %}{{ table }}<br/>{% endfor %}</td></tr>
+{% endif %}
+{% if module.has_settings %}
+<tr><td><h3>Настройки компонента:</h3></td><td>{% for setting in module.settings %}{{ setting.name }} : {{ setting.type }}<br/>{% endfor %}</td></tr>
+{% endif %}
+<tr><td><h3>Функции:</h3></td><td>{% for method in module.methods %}{{ method }}<br/>{% endfor %}</td></tr>
+</table>
+<br/>
+<a href="/admin/{{ module.name }}/contents">Посмотреть исходный текст</a>
+
+{% endblock %}
