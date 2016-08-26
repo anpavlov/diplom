@@ -8,8 +8,6 @@ from lxml import etree
 
 api = Blueprint('api', __name__)
 
-# TODO: secure file names
-
 @api.route("/check_module")
 def check_module():
     # if request.method != 'GET':

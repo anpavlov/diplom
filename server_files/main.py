@@ -22,7 +22,6 @@ app.config.from_object(settings)
 
 mysql.init_app(app)
 
-# открывает файлы в diplom ((?)где запускают uwsgi)
 app.register_blueprint(admin)
 app.register_blueprint(api, url_prefix='/api')
 
@@ -62,7 +61,6 @@ def html_file(module_name, html_file):
     sandbox['math'] = lua.eval("math")
     sandbox['error'] = lua.eval("error")
     sandbox['tonumber'] = lua.eval("tonumber")
-    # TODO: get password
     sandbox['db'] = lua.eval(fdb_str.format(settings.MYSQL_DATABASE_DB, "m{}".format(data[0]), "qwe123"))()
 
     args = dict(request.args)
@@ -119,7 +117,6 @@ def module_api(module_name, module_method):
     sandbox['math'] = lua.eval("math")
     sandbox['error'] = lua.eval("error")
     sandbox['tonumber'] = lua.eval("tonumber")
-    # TODO: get password
     sandbox['db'] = lua.eval(fdb_str.format(settings.MYSQL_DATABASE_DB, "m{}".format(data[0]), "qwe123"))()
 
     if request.method == 'POST':
@@ -175,13 +172,6 @@ def to_dict(t1):
         pass
     return dict(t1)
 
-
-@app.route("/create_test")
-def create_test():
-    os.makedirs('lua/modules/test/')
-    with open('lua/modules/test/sample.lua', 'w') as f:
-        f.write('ngx.say("hi from test")')
-    return "from create!"
 
 if __name__ == "__main__":
     app.run()

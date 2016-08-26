@@ -159,7 +159,6 @@ def upload_module(archive):
                 if not db_schema.validate(db_xml):
                     return "Неверная схема таблиц для базы данных"
                 else:
-                    # TODO check foreign keys
                     for table in db_xml.xpath('/Database/Table/@name'):
                         db_tables.append(table)
 
@@ -223,7 +222,6 @@ def approve_module(mod_id):
     with ZipFile('modules/archives/{}{}.zip'.format(module_name, module_version), 'r') as zip:
         with zip.open('manifest.json') as manifest_file:
             manifest = json.loads(manifest_file.read())
-        # TODO класть эту в бд
         module_urls = manifest['urls']
         module_db = manifest['database']
         module_html = manifest['html']
@@ -255,7 +253,6 @@ def approve_module(mod_id):
                         f.write(html_file.read())
 
         if module_db is True:
-            # TODO: generate password
             user_create = "CREATE USER 'm{}'@'localhost' IDENTIFIED BY 'qwe123'".format(mod_id)
             cursor.execute(user_create)
             foreign_tables = []
